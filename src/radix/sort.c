@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   duplicates.c                                       :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 18:38:37 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/08 10:30:00 by plpelleg         ###   ########.fr       */
+/*   Created: 2021/10/08 10:32:29 by plpelleg          #+#    #+#             */
+/*   Updated: 2021/10/08 12:53:09 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	ft_duplicates(t_stack *stack)
+t_stack	*ft_sort(t_stack *a, t_stack *b)
 {
-	int		num;
-	t_stack	*loop;
+	int	i;
+	int	j;
+	int	num;
+	int	bits;
+	int	size;
 
-	while (stack -> next)
+	i = -1;
+	bits = ft_max_bits(a);
+	size = ft_stack_size(a);
+	while (++i < bits)
 	{
-		loop = stack -> next;
-		while (loop -> next)
+		j = -1;
+		while (++j < size)
 		{
-			if (loop -> num == stack -> num)
-			{
-				ft_free_stack(stack);
-				ft_exit(1);
-			}
-			loop = loop -> next;
+			num = a-> num;
+			if (((num >> i) & 1) == 1)
+				ft_r(a);
+			else
+				b = ft_p(a, b);
 		}
-		if (loop -> num == stack -> num)
-		{
-			ft_free_stack(stack);
-			ft_exit(1);
-		}
-		stack = stack -> next;
+		while (ft_stack_size(a) < size)
+			ft_p(b, a);
+		a = ft_top(a);
 	}
+	return (a);
 }

@@ -6,18 +6,11 @@
 /*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:22:20 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/07 19:20:10 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:30:43 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
-
-t_stack	*ft_get_head(t_stack *elem)
-{
-	while (elem -> prev)
-		elem = elem -> prev;
-	return (elem);
-}
 
 static t_stack	*ft_new_stack(int number)
 {
@@ -66,5 +59,5 @@ t_stack	*ft_char_to_stack(int len, char **numbers)
 			ft_exit(1);
 		}
 	}
-	return (ft_get_head(elem));
+	return (ft_top(elem));
 }

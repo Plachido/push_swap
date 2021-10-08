@@ -6,7 +6,7 @@
 /*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 10:55:57 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/05 17:08:44 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/10/08 10:44:12 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,7 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
+void			ft_putendl(char *s);
+void			ft_putstr(char *s);
+
 #endif

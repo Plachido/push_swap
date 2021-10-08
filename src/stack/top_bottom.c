@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   duplicates.c                                       :+:      :+:    :+:   */
+/*   top_bottom.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/07 18:38:37 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/08 10:30:00 by plpelleg         ###   ########.fr       */
+/*   Created: 2021/10/08 11:31:12 by plpelleg          #+#    #+#             */
+/*   Updated: 2021/10/08 11:45:19 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-void	ft_duplicates(t_stack *stack)
+t_stack	*ft_top(t_stack *elem)
 {
-	int		num;
-	t_stack	*loop;
+	while (elem -> prev)
+		elem = elem -> prev;
+	return (elem);
+}
 
-	while (stack -> next)
-	{
-		loop = stack -> next;
-		while (loop -> next)
-		{
-			if (loop -> num == stack -> num)
-			{
-				ft_free_stack(stack);
-				ft_exit(1);
-			}
-			loop = loop -> next;
-		}
-		if (loop -> num == stack -> num)
-		{
-			ft_free_stack(stack);
-			ft_exit(1);
-		}
-		stack = stack -> next;
-	}
+t_stack	*ft_bottom(t_stack *elem)
+{
+	while (elem -> next)
+		elem = elem -> next;
+	return (elem);
 }

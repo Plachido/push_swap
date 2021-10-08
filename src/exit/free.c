@@ -5,7 +5,7 @@ void	ft_free_stack(t_stack *elem)
 	t_stack	*next;
 
 	next = NULL;
-	elem = ft_get_head(elem);
+	elem = ft_top(elem);
 	while (elem -> next)
 	{
 		next = elem -> next;
