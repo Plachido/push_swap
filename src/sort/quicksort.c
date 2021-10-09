@@ -1,11 +1,11 @@
-void swap(int* a, int* b)
+static void swap(int* a, int* b)
 {
 	int t = *a;
 	*a = *b;
 	*b = t;
 }
 
-int partition (int arr[], int low, int high)
+static int partition (int arr[], int low, int high)
 {
 	int pivot = arr[high]; // pivot
 	int i = (low - 1); // Index of smaller element and indicates the right position of pivot found so far
@@ -22,14 +22,14 @@ int partition (int arr[], int low, int high)
 	return (i + 1);
 }
 
-void quickSort(int arr[], int low, int high)
+void ft_quicksort(int arr[], int low, int high)
 {
 	if (low < high)
 	{
 		/* pi is partitioning index, arr[p] is now
 		at right place */
 		int pi = partition(arr, low, high);
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
+		ft_quicksort(arr, low, pi - 1);
+		ft_quicksort(arr, pi + 1, high);
 	}
 }

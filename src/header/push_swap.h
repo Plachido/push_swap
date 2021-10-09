@@ -23,6 +23,7 @@ typedef struct s_stack
 	struct s_stack		*next;
 }				t_stack;
 
+void	ft_quicksort(int arr[], int low, int high);
 t_stack	*ft_r(t_stack *a);
 t_stack	*ft_p(t_stack **src, t_stack *des);
 t_stack	*ft_bottom(t_stack *elem);
