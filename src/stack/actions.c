@@ -12,35 +12,49 @@
 
 #include "../header/push_swap.h"
 
-void	ft_r(t_stack *a)
+t_stack	*ft_r(t_stack *a)
 {
 	t_stack	*first;
 	t_stack	*last;
-
+	
+	if (ft_stack_size(a) == 1)
+		return(a);
 	first = ft_top(a);
 	last = ft_bottom(a);
 	first -> next -> prev = NULL;
 	first -> next = NULL;
 	first -> prev = last;
 	last -> next = first;
+	return (ft_top(a));
 }
 
-t_stack	*ft_p(t_stack *from, t_stack *to)
+t_stack	*ft_p(t_stack **src, t_stack *des)
 {
+	t_stack *from;
+	t_stack *new_top;
+
+	from = *src;
 	from = ft_top(from);
 	if (ft_stack_size(from) > 1)
-		from -> next -> prev = NULL;
-	if (to)
 	{
-		to = ft_top(to);
-		to -> prev = from;
+		from -> next -> prev = NULL;
+		new_top = from ->next;
+	}
+	else
+		new_top = NULL;
+	if (des)
+	{
+		des = ft_top(des);
+		des -> prev = from;
 		from -> prev = NULL;
-		from -> next = to;
+		from -> next = des;
+		des = des -> prev;
 	}
 	else
 	{
-		to = from;
-		to -> next = NULL;
+		des = from;
+		des -> next = NULL;
 	}
-	return (to);
+	*src = new_top;
+	return (des);
 }

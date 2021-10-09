@@ -71,6 +71,8 @@ int	ft_stack_size(t_stack *stack)
 {
 	int	size;
 
+	if (!stack)
+		return (0);
 	size = 0;
 	stack = ft_top(stack);
 	while (stack -> next)

@@ -23,8 +23,8 @@ typedef struct s_stack
 	struct s_stack		*next;
 }				t_stack;
 
-void	ft_r(t_stack *a);
-t_stack	*ft_p(t_stack *from, t_stack *to);
+t_stack	*ft_r(t_stack *a);
+t_stack	*ft_p(t_stack **src, t_stack *des);
 t_stack	*ft_bottom(t_stack *elem);
 t_stack	*ft_sort(t_stack *a, t_stack *b);
 int		ft_stack_size(t_stack *stack);

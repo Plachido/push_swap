@@ -14,6 +14,8 @@
 
 t_stack	*ft_top(t_stack *elem)
 {
+	if (!elem)
+		return (NULL);
 	while (elem -> prev)
 		elem = elem -> prev;
 	return (elem);
@@ -21,6 +23,8 @@ t_stack	*ft_top(t_stack *elem)
 
 t_stack	*ft_bottom(t_stack *elem)
 {
+	if (!elem)
+		return (NULL);
 	while (elem -> next)
 		elem = elem -> next;
 	return (elem);

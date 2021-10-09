@@ -19,8 +19,9 @@ int	main(int argc, char **argv)
 
 	a = ft_char_to_stack(argc, argv);
 	ft_duplicates(a);
+	b = NULL;
 	a = ft_sort(a, b);
-	ft_print(a);
+	//ft_print(a);
 	ft_free(a, b);
 	ft_exit(0);
 }
