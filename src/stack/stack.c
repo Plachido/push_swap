@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:22:20 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/12 18:51:22 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/10/13 18:47:23 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ static	t_stack *ft_simplify(t_stack *stack, int values[])
 		i = -1;
 		while (values[++i] != stack -> num)
 			;
-		stack -> num = i + 1;
+		stack -> num = i;
 		stack = stack -> next;
 	}
 	i = -1;
 	while (values[++i] != stack -> num)
 		;
-	stack -> num = i + 1;
+	stack -> num = i;
 	return (ft_top(stack));
 
 }
@@ -68,12 +68,17 @@ int	*ft_char_to_stack(int len, char **numbers, t_stack **stack)
 	int *values;
 	int num;
 
-	values = malloc((len - 2) * sizeof(int));
+	values = malloc((len - 1) * sizeof(int));
+	if (!values)
+		ft_exit(0);
 	num = ft_atoi_err(numbers[1]);
 	values[0] = num;
 	elem = ft_new_stack(num);
-	//if (!elem)
-	//	return (NULL);
+	if (!elem)
+	{
+		free(values);
+		ft_exit(0);
+	}
 	i = 1;
 	while (++i < len)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   duplicates.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:38:37 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/08 10:30:00 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/10/13 18:43:59 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_duplicates(t_stack *stack)
 {
-	int		num;
 	t_stack	*loop;
 
 	while (stack -> next)

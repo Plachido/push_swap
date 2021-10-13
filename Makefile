@@ -1,9 +1,8 @@
 NAME = push_swap
 
-LIBFT = libft.a
+LIBFT = libft/libft.a
 
-FLAGS = -Wall -Wextra -Werror -g
-
+FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 SRCS = 	$(shell find src -name "*.c")
 
 OBJ = $(@SRCS:.c=.o)
@@ -21,7 +20,6 @@ $(LIBFT):
 	@echo "[compiling libft...]"
 	@$(MAKE) bonus -C ./libft
 	@$(MAKE) clean -C ./libft
-	@mv libft/libft.a .
 
 all : $(NAME)
 
