@@ -3,41 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:29:48 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/08 11:49:32 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/10/13 22:39:43 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
 
-int	ft_atoi_err(const char *str)
+int		ft_atoi_err(t_stack *stack, int *values, const char *str)
 {
-	int	i;
-	int	neg;
-	int	res;
+	unsigned int	num;
+	int				i;
+	int				np;
 
+	np = 1;
 	i = 0;
-	neg = 1;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+	num = 0;
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\f' ||
+			str[i] == '\r' || str[i] == '\n' || str[i] == '\v')
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (str[i] == '+' || str[i] == '-')
+		if (str[i++] == '-')
+			np = -1;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (str[i] == '-')
-			neg = -1;
+		num = num * 10 + (str[i] - '0');
 		i++;
 	}
-	res = 0;
-	while (str[i] != '\0')
+	if (str[i] != '\0')
 	{
-		if (str[i] > 57 || str[i] < 48)
-			ft_exit(1);
-		res = (res * 10) + (str[i] - 48);
-		i++;
+		ft_free_stack(stack);
+		free(values);
+		ft_exit(1);
 	}
-	return (res * neg);
+	return ((int)(np * num));
 }
 
 static int	ft_max(t_stack *stack)

@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:22:20 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/13 18:47:23 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/10/13 22:39:34 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,18 @@ static	t_stack *ft_simplify(t_stack *stack, int values[])
 
 }
 
-int	*ft_char_to_stack(int len, char **numbers, t_stack **stack)
+t_stack	*ft_char_to_stack(int len, char **numbers)
 {
+	t_stack *elem;
 	int		i;
-	t_stack	*elem;
 	int *values;
 	int num;
 
+	elem = NULL;
 	values = malloc((len - 1) * sizeof(int));
 	if (!values)
 		ft_exit(0);
-	num = ft_atoi_err(numbers[1]);
+	num = ft_atoi_err(elem, values, numbers[1]);
 	values[0] = num;
 	elem = ft_new_stack(num);
 	if (!elem)
@@ -82,7 +83,7 @@ int	*ft_char_to_stack(int len, char **numbers, t_stack **stack)
 	i = 1;
 	while (++i < len)
 	{
-		num = ft_atoi_err(numbers[i]);
+		num = ft_atoi_err(elem, values, numbers[i]);
 		values[i - 1] = num;
 		elem = ft_add_to_stack(elem, num);
 		if (!elem)
@@ -93,6 +94,6 @@ int	*ft_char_to_stack(int len, char **numbers, t_stack **stack)
 	}
 	ft_quicksort(values, 0, len - 2);
 	elem = ft_simplify(ft_top(elem), values);
-	*stack = elem;
-	return (values);
+	free(values);
+	return (elem);
 }

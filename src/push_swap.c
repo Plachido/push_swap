@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 16:25:30 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/13 21:02:12 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/10/13 21:53:57 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 int	main(int argc, char **argv)
 {
-	int *ordered;
 	t_stack	*a;
 	t_stack	*b;
 
-	ordered = ft_char_to_stack(argc, argv, &a);
+	if (argc > 1)
+	{
+			a = ft_char_to_stack(argc, argv);
 	ft_duplicates(a);
 	b = NULL;
 	if (argc <= 6)
 		a = ft_sort_small(a, b, argc-1);
 	a = ft_sort(a, b, argc-1);
 	ft_free(a, b);
-	free(ordered);
 	ft_exit(0);
+	}
 }

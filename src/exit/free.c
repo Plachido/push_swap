@@ -4,6 +4,8 @@ void	ft_free_stack(t_stack *elem)
 {
 	t_stack	*next;
 
+	if (!elem)
+		return;
 	next = NULL;
 	elem = ft_top(elem);
 	while (elem -> next)
