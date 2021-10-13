@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:22:20 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/08 11:30:43 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/10/12 18:51:22 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,19 @@ static	t_stack *ft_simplify(t_stack *stack, int values[])
 
 }
 
-t_stack	*ft_char_to_stack(int len, char **numbers)
+int	*ft_char_to_stack(int len, char **numbers, t_stack **stack)
 {
 	int		i;
 	t_stack	*elem;
 	int *values;
 	int num;
-	
+
 	values = malloc((len - 2) * sizeof(int));
 	num = ft_atoi_err(numbers[1]);
 	values[0] = num;
 	elem = ft_new_stack(num);
-	if (!elem)
-		return (NULL);
+	//if (!elem)
+	//	return (NULL);
 	i = 1;
 	while (++i < len)
 	{
@@ -88,6 +88,6 @@ t_stack	*ft_char_to_stack(int len, char **numbers)
 	}
 	ft_quicksort(values, 0, len - 2);
 	elem = ft_simplify(ft_top(elem), values);
-	free(values);
-	return (elem);
+	*stack = elem;
+	return (values);
 }

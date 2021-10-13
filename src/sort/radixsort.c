@@ -1,29 +1,101 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
+/*   radixsort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:32:29 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/08 12:53:09 by plpelleg         ###   ########.fr       */
+/*   Updated: 2021/10/12 22:36:52 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/push_swap.h"
+#include <stdio.h>
 
-static int	ft_stack_ordered(t_stack *a)
+static int ft_min(t_stack *a)
 {
+	int min;
+	
 	a = ft_top(a);
+	min = a->num;
 	while (a)
 	{
-		if ((a -> prev) && (a -> num <  a -> prev -> num))
-			return(0);
-		a = a -> next;
+		if (a->num < min)
+			min = a->num;
+		a = a->next;
 	}
-	return (1);
+	return(min);
 }
-t_stack	*ft_sort(t_stack *a, t_stack *b)
+
+static void	ft_fix_rotation(t_stack *a, int ra, int rra)
+{
+	a = ft_top(a);
+	if (ra <= rra)
+		while (ra--)
+		{
+			ft_putendl("ra");
+			ft_r(a);
+		}
+	else
+		while (rra--)
+		{
+			ft_putendl("rra");
+			ft_rr(a);
+		}
+}
+
+static int	ft_stack_ordered(t_stack *a, int len)
+{
+	int i;
+	int index;
+	int min;
+	int sum;
+	
+	i = 0;
+	index = 1;
+	a = ft_top(a);
+	min = ft_min(a);
+	while (a -> num != min)
+	{
+		a = a->next;
+		index++;
+	}
+	while(++i < len)
+	{
+		if (a->next)
+		{
+			if (a->next->num < a->num)
+				return(0);
+			a = a->next;
+		}
+		else
+		{
+			if (ft_top(a)->num < a->num)
+				return(0);
+			a = ft_top(a);
+		}
+	}
+	sum = 0;
+	if (len%2 != 0)
+		sum = 1;
+	while(ft_top(a) -> num != min)
+	{
+		if (index > ((len + sum)/2))
+		{
+			ft_putendl("rra");
+			ft_rr(a);
+		}
+		else
+		{
+			ft_putendl("ra");
+			ft_r(a);
+		}
+	}
+	return(1);
+}
+
+t_stack	*ft_sort(t_stack *a, t_stack *b, int len)
 {
 	int	i;
 	int	j;
@@ -39,7 +111,7 @@ t_stack	*ft_sort(t_stack *a, t_stack *b)
 		j = -1;
 		while (++j < size)
 		{
-			if (ft_stack_size(a) == size && ft_stack_ordered(a))
+			if (ft_stack_size(a) == size && ft_stack_ordered(a, len))
 				return (a);
 			num = a-> num;
 			if (((num >> i) & 1) == 1)
