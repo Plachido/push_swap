@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:29:48 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/13 22:39:43 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/10/14 16:03:22 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_atoi_err(t_stack *stack, int *values, const char *str)
 		num = num * 10 + (str[i] - '0');
 		i++;
 	}
-	if (str[i] != '\0')
+	if ((str[i] != '\0') || (num > 2147483647 && np == 1) || (num > 2147483648 && np == -1))
 	{
 		ft_free_stack(stack);
 		free(values);
