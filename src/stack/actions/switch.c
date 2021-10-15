@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   switch.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/15 12:06:15 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/15 12:06:16 by plpelleg         ###   ########.fr       */
+/*   Created: 2021/10/08 11:27:05 by plpelleg          #+#    #+#             */
+/*   Updated: 2021/10/15 10:14:48 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/push_swap.h"
+#include "../../header/push_swap.h"
 
-int	main(int argc, char **argv)
+t_stack	*ft_s(t_stack *stack)
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	*second;
 
-	if (argc > 1)
-	{
-		a = ft_char_to_stack(argc, argv);
-		ft_duplicates(a);
-		b = NULL;
-		if (argc <= 25)
-			a = ft_sort_small(a, b, argc - 1);
-		a = ft_sort(a, b, argc - 1);
-		ft_free(a, b);
-		ft_exit(0);
-	}
+	stack = ft_top(stack);
+	if (ft_stack_size(stack) == 1)
+		return (NULL);
+	second = stack -> next;
+	if (stack -> next -> next)
+		stack -> next -> next -> prev = stack;
+	stack -> next -> prev = NULL;
+	stack -> prev = stack -> next;
+	stack -> next = stack -> next-> next;
+	second->next = stack;
+	return (ft_top(stack));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: plpelleg <plpelleg@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:22:20 by plpelleg          #+#    #+#             */
-/*   Updated: 2021/10/13 22:39:34 by ubuntu           ###   ########.fr       */
+/*   Updated: 2021/10/15 12:17:57 by plpelleg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ static t_stack	*ft_add_to_stack(t_stack *last, int num)
 	return (new);
 }
 
-static	t_stack *ft_simplify(t_stack *stack, int values[])
+static t_stack	*ft_simplify(t_stack *stack, int values[])
 {
-	int i;
+	int	i;
 
-	while(stack->next)
+	while (stack->next)
 	{
 		i = -1;
 		while (values[++i] != stack -> num)
@@ -58,39 +58,29 @@ static	t_stack *ft_simplify(t_stack *stack, int values[])
 		;
 	stack -> num = i;
 	return (ft_top(stack));
-
 }
 
 t_stack	*ft_char_to_stack(int len, char **numbers)
 {
-	t_stack *elem;
+	t_stack	*elem;
 	int		i;
-	int *values;
-	int num;
+	int		*values;
 
 	elem = NULL;
 	values = malloc((len - 1) * sizeof(int));
 	if (!values)
 		ft_exit(0);
-	num = ft_atoi_err(elem, values, numbers[1]);
-	values[0] = num;
-	elem = ft_new_stack(num);
+	ft_atoi_ps(elem, values, 0, numbers[1]);
+	elem = ft_new_stack(values[0]);
 	if (!elem)
-	{
-		free(values);
-		ft_exit(0);
-	}
+		ft_malloc_error(values, elem);
 	i = 1;
 	while (++i < len)
 	{
-		num = ft_atoi_err(elem, values, numbers[i]);
-		values[i - 1] = num;
-		elem = ft_add_to_stack(elem, num);
+		ft_atoi_ps(elem, values, i - 1, numbers[i]);
+		elem = ft_add_to_stack(elem, values[i - 1]);
 		if (!elem)
-		{
-			ft_free_stack(elem);
-			ft_exit(1);
-		}
+			ft_malloc_error(values, elem);
 	}
 	ft_quicksort(values, 0, len - 2);
 	elem = ft_simplify(ft_top(elem), values);

@@ -2,7 +2,7 @@ NAME = push_swap
 
 LIBFT = libft/libft.a
 
-FLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+FLAGS = -Wall -Wextra -Werror
 SRCS = 	$(shell find src -name "*.c")
 
 OBJ = $(@SRCS:.c=.o)
