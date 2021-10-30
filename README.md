@@ -1,5 +1,5 @@
 # push_swap
-The goal of this project is to sort data on a stack using two stacks, with a limited set of instructions, using the lowest possible number of actions.
+The goal of this project is to sort data on a stack using two stacks, with a limited set of instructions, using the lowest possible number of actions. All of the code is written in accordance to the Norm v3.
 
 ## THE ACTIONS
 The operations allowed on the the two stacks (named respectively A and B) are the folowing:
