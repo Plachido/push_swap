@@ -18,3 +18,7 @@ The operations allowed on the the two stacks (named respectively A and B) are th
 ## THE ALGORITHM
 The main algorithm, inspired by [@LeoFu9487's Push_Swap Tutorial](https://medium.com/nerd-for-tech/push-swap-tutorial-fa746e6aba1e) is an implementation of radix sort. Basically, the numbers are seen as binary digits in order to use the algorithm with only two bins (the two stacks). This solution, although not the moste efficient, is quite efficient expetially when used for sorting many numbers.
 In fact, it is extremely inefficient when few numbers have to get ordered. Because of this, the approach is different when the numbers to sort are less than 25 (after some tests, this seemed a reasonable number): a smart rotation is made in order to push to stack B the highest number until only two numbers are left in stack A. These get sorted and everything gets pushed back to A. 
+
+## KNOWN ISSUES
+* Under some circumstances, numbers above max int might not return error.
+* Shell variables do not work because the program recognizes strings as one single number and therefor does nothing.
