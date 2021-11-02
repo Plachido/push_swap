@@ -20,5 +20,5 @@ The main algorithm, inspired by [@LeoFu9487's Push_Swap Tutorial](https://medium
 In fact, it is extremely inefficient when few numbers have to get ordered. Because of this, the approach is different when the numbers to sort are less than 25 (after some tests, this seemed a reasonable number): a smart rotation is made in order to push to stack B the highest number until only two numbers are left in stack A. These get sorted and everything gets pushed back to A. 
 
 ## KNOWN ISSUES
-* Under some circumstances, numbers above max int might not return error.
+* Under some circumstances, numbers above `MAX_INT` might not return error.
 * Shell variables do not work because the program recognizes strings as one single number and therefor does nothing.
